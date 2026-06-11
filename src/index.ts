@@ -1,8 +1,16 @@
-import { EdgeFastMCP } from "fastmcp/edge";
+import { FastMCP } from "fastmcp";
+import { registerTools } from "./tools.js";
 
-export const server = new EdgeFastMCP({
+const server = new FastMCP({
   name: "job-board-mcp",
   version: "1.0.0"
 });
 
-export default server;
+registerTools(server);
+
+server.start({
+  transportType: "httpStream",
+  httpStream: {
+    port: 8080
+  }
+})

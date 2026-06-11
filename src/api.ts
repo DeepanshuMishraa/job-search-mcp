@@ -24,7 +24,7 @@ export const getAllJobs = () => effect.gen(function* () {
     })
   ]);
 
-  
+
   return {
     YC_JOBS: yc,
     Normal: api
