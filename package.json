@@ -1,0 +1,27 @@
+{
+  "name": "job-mcp",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "bin": {
+    "job-mcp": "./build/index.js"
+  },
+  "scripts": {
+    "build": "tsc && chmod 755 build/index.js"
+  },
+  "files": [
+    "build"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "effect": "^3.21.3",
+    "fastmcp": "^4.1.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.3",
+    "typescript": "^6.0.3"
+  }
+}
