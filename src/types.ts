@@ -41,18 +41,14 @@ enum EmploymentType {
 
 export const JobSearchParams = Schema.Struct({
   keyword: Schema.String,
-  location: Schema.String,
-  countries: Schema.String,
-  remote_type: Schema.Enums(RemoteType),
-  job_function: Schema.Enums(JobFunction),
-  level: Schema.Enums(JobLevel),
-  employement_type: Schema.Enums(EmploymentType),
-  skills: Schema.Array(Schema.String),
-  salary_min: Schema.Number.pipe(
-    Schema.int(),
-    Schema.greaterThan(0),
-    Schema.optionalWith({ default: () => 0 })
-  )
+  location: Schema.optionalWith(Schema.String, { default: () => "" }),
+  countries: Schema.optionalWith(Schema.String, { default: () => "" }),
+  remote_type: Schema.optionalWith(Schema.Enums(RemoteType), { default: () => RemoteType.ANY }),
+  job_function: Schema.optionalWith(Schema.Enums(JobFunction), { default: () => JobFunction.ANY }),
+  level: Schema.optionalWith(Schema.Enums(JobLevel), { default: () => JobLevel.ENTRY }),
+  employement_type: Schema.optionalWith(Schema.Enums(EmploymentType), { default: () => EmploymentType.FULL_TIME }),
+  skills: Schema.optionalWith(Schema.Array(Schema.String), { default: () => [] }),
+  salary_min: Schema.optionalWith(Schema.Number.pipe(Schema.int(), Schema.greaterThan(0)), { default: () => 0 }),
 });
 
 export const SearchJobsSchema = z.object({
