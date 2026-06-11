@@ -9,8 +9,5 @@ const server = new FastMCP({
 registerTools(server);
 
 server.start({
-  transportType: "httpStream",
-  httpStream: {
-    port: 8080
-  }
+  transportType: "stdio",
 })

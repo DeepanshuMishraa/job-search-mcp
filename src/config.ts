@@ -1,9 +1,5 @@
-try {
-  const dotenv = await import("dotenv");
-  dotenv.config();
-} catch {
-  // Not running in Node.js (e.g. Cloudflare Workers) — env vars come from runtime bindings
-}
+import dotenv from "dotenv";
+dotenv.config();
 
 const missing: string[] = [];
 

@@ -2,9 +2,10 @@ import { Effect as effect } from "effect";
 import { getAllJobs, SearchJob } from "./api.js";
 import { getGithubData } from "./profile.js";
 import { userProfile, targetKeywords } from "./userProfile.js";
-import { SearchJobsSchema, SearchJobsForMeSchema, type SearchJobsArgs, type SearchJobsForMeArgs } from "./types.js";
+import { SearchJobsSchema, SearchJobsForMeSchema } from "./types.js";
+import type { SearchJobsArgs, SearchJobsForMeArgs } from "./types.js";
 
-export const registerTools = (server: { addTool: any }) => {
+export const registerTools = (server: { addTool: any; }) => {
   server.addTool({
     name: "search-all-jobs",
     description: "Search all the jobs",
