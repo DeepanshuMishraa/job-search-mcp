@@ -4,24 +4,26 @@ Its Employment time now, so we are at some good times where we should'nt manuall
 
 I have a broad scope in mind for this project so i will try to upsert things as go and pretty much this is also an attempt of mine to get familiar with effect as i started exploring it with my last [Apple MCP](https://github.com/DeepanshuMishra/apple-music-mcp-effect) project. 
 
-Scope: 
-
-- [ ]  Go to various job portals and find relevant jobs 
-- [ ]  Define my profiles and relevant links , based on which an llm would go and explore the relevant jobs 
-- [ ]  find the relevant job and return to the user. 
-- [ ]  Run a cron job which keeps an eye on these portals and gives you daily new job postings based on your profile. 
-- [ ]  Apply to these jobs on my behalf 
-- [ ]  Find Companies , their repos if they are opensource and give report and analysis of the company 
-- [ ]  Cold email Founders on my behalf. 
-
-
-These are some of the ideas i have in mind at the moment , depending upon the situation things might be added or removed. 
-
 Stack : Typescript , effect for all. 
 
-## Data Sources
+## Shipped
 
-The essential ones that give daily fresh jobs with full info (title, description, salary, company, location, apply link):
+- [x] **JobDataLake search** — search with keyword, location, remote type, function, level, skills, salary
+- [x] **Pagination** — generic paginate helper, loops pages till exhausted
+- [x] **User profile** — structured from resume (skills, experience, education, target roles)
+- [x] **GitHub analysis** — fetches user + repos via Octokit in parallel
+
+## In Progress
+
+- [ ] **Company details** — tools return job info but no company profile/repos. Add that.
+
+## On Hold
+
+- [ ] **Daily cron monitor** — scan for new postings matching your profile
+- [ ] **Auto-apply pipeline** — fill and submit applications on your behalf
+- [ ] **Cold email** — draft and send to founders/recruiters
+
+## Data Sources
 
 | Source | Type | Access | Cost | Coverage |
 |---|---|---|---|---|
@@ -33,4 +35,24 @@ The essential ones that give daily fresh jobs with full info (title, description
 
 **Plan**: Hit Greenhouse/Lever/Ashby directly first (free, no setup). Use JobsPipe or JobDataLake REST API for broader coverage when needed.
 
+## Setup
 
+```env
+JDL_API_KEY=jdl_your_key
+GITHUB_TOKEN=ghp_your_token
+```
+
+```json
+{
+  "mcpServers": {
+    "job-board": {
+      "command": "node",
+      "args": ["build/index.js"],
+      "env": {
+        "JDL_API_KEY": "jdl_...",
+        "GITHUB_TOKEN": "ghp_..."
+      }
+    }
+  }
+}
+```
