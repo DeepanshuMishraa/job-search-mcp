@@ -18,6 +18,7 @@
   "dependencies": {
     "effect": "^3.21.3",
     "fastmcp": "^4.1.0",
+    "octokit": "^5.0.5",
     "zod": "^4.4.3"
   },
   "devDependencies": {
