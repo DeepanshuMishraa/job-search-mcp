@@ -2,8 +2,9 @@ import { Effect as effect, Schema } from "effect";
 import { JobFunction, JobSearchParams, RemoteType } from "./types.js";
 import { paginate } from "./paginate.js";
 
+import { API_KEY } from "./config.js";
+
 const API_URL = "https://api.jobdatalake.com";
-const API_KEY = process.env.API_KEY;
 const YC_HIRING_API_URL = "https://yc-oss.github.io/api/companies/hiring.json";
 
 
@@ -16,7 +17,7 @@ export const getAllJobs = () => effect.gen(function* () {
       catch: (err) => new Error(String(err))
     }),
     effect.tryPromise({
-      try: () => fetch(`${API_URL}/v1/jobs?per_page=100`, { headers: { "X-API-Key": API_KEY as string } }).then((r) => {
+      try: () => fetch(`${API_URL}/v1/jobs?per_page=100`, { headers: { "X-API-Key": API_KEY } }).then((r) => {
         if (!r.ok) throw new Error(`Request failed with ${r.status}`);
         return r.json() as unknown;
       }),
@@ -53,7 +54,7 @@ export const SearchJob = (info: unknown) =>
         effect.tryPromise({
           try: () =>
             fetch(`${API_URL}/v1/jobs?${baseParams}&page=${page}&per_page=${perPage}`, {
-              headers: { "X-API-Key": API_KEY as string }
+              headers: { "X-API-Key": API_KEY }
             }).then((r) => {
               if (!r.ok) throw new Error(`Request failed with ${r.status}`);
               return r.json() as Promise<{ jobs: unknown[]; found: number; }>;

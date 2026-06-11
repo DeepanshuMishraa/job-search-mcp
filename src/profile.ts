@@ -1,11 +1,8 @@
 import { Octokit } from "octokit";
 import { Effect as effect } from "effect";
+import { GITHUB_TOKEN } from "./config.js";
 
-const token: string | undefined = process.env.GITHUB_TOKEN;
-
-if (!token) throw new Error("Github Token Not Configured");
-
-const octokit = new Octokit({ auth: token });
+const octokit = new Octokit({ auth: GITHUB_TOKEN });
 
 
 export const getGithubData = () =>
