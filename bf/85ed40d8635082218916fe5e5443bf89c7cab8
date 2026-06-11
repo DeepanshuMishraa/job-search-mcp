@@ -1,0 +1,21 @@
+src/tools.ts
+  s_e12948193accf7::t_769e0e9e0ec244 5-6
+src/config.ts
+  s_e12948193accf7::t_106473918627f2 1-2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "bf85ed40d8635082218916fe5e5443bf89c7cab8",
+  "prompts": {},
+  "sessions": {
+    "s_e12948193accf7": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_14a0c0800ffe3i8v06hseQI4Kr",
+        "model": "deepseek-v4-flash-free"
+      },
+      "human_author": "Deepanshu Mishra <d4deepanshu723@gmail.com>"
+    }
+  }
+}
