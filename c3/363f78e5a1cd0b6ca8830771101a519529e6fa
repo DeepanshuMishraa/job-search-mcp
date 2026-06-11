@@ -1,0 +1,20 @@
+README.md
+  s_e12948193accf7::t_e9f9cf683f6ea3 7,9,11-14,16,18,20,22-24
+  s_e12948193accf7::t_48b5d02d37166e 26,38-58
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "c3363f78e5a1cd0b6ca8830771101a519529e6fa",
+  "prompts": {},
+  "sessions": {
+    "s_e12948193accf7": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_14a0c0800ffe3i8v06hseQI4Kr",
+        "model": "deepseek-v4-flash-free"
+      },
+      "human_author": "Deepanshu Mishra <d4deepanshu723@gmail.com>"
+    }
+  }
+}
