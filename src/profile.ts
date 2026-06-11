@@ -8,23 +8,21 @@ if (!token) throw new Error("Github Token Not Configured");
 const octokit = new Octokit({ auth: token });
 
 
-export const getGithubData = () => effect.gen(function* () {
-  const user = yield* effect.tryPromise({
-    try: () => octokit.request('GET /user').then((r) => {
-      return JSON.stringify(r.data);
-    }),
-    catch: (err) => new Error(String(err))
-  });
+export const getGithubData = () =>
+  effect.gen(function* () {
+    const [user, repos] = yield* effect.all([
+      effect.tryPromise({
+        try: () => octokit.request('GET /user').then((r) => JSON.stringify(r.data)),
+        catch: (err) => new Error(String(err))
+      }),
+      effect.tryPromise({
+        try: () => octokit.paginate('GET /user/repos', { per_page: 100 }).then((r) => JSON.stringify(r)),
+        catch: (err) => new Error(String(err))
+      })
+    ]);
 
-  const repos = yield* effect.tryPromise({
-    try: () => octokit.request('GET /user/repos').then((r) => {
-      return JSON.stringify(r.data);
-    }),
-    catch: (err) => new Error(String(err))
-  });
-
-  return {
-    userInfo: user,
-    repoInfo: repos
-  };
-})
+    return {
+      userInfo: user,
+      repoInfo: repos
+    };
+  })
