@@ -19,7 +19,7 @@ server.addTool({
   description: "Analyze the user's github profile for skills, projects etc",
   execute: async () => {
     const github = await effect.runPromise(getGithubData());
-    return { github, profile: userProfile };
+    return JSON.stringify({ github, profile: userProfile });
   }
 });
 
